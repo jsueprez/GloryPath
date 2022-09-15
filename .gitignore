@@ -1,6 +1,6 @@
 # Folders #
 ###################
-build-debug/*
+build/
 
 # Compiled source #
 ###################
@@ -27,3 +27,4 @@ build-debug/*
 # OS generated files #
 ######################
 .DS_Store
+*.user
