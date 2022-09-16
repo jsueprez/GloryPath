@@ -30,6 +30,7 @@ file(GLOB TEST_SOURCE
     src/test/testComputing.cpp
     src/test/testChapterOne.cpp
     src/test/main.cpp
+    src/test/performance_test.cpp
 )
 
 set(ALL_SRC_CODE ${CORE_SOURCE} ${CORE_HEADERS})
@@ -61,10 +62,6 @@ include_directories (
     ${CMAKE_SOURCE_DIR}/src/ext/google/googletest/googletest/src
 )
 
-add_executable(${PROJECT_CODE_NAME}_tests ${TEST_SOURCE})
-target_link_libraries(${PROJECT_CODE_NAME}_tests
-    ${PROJECT_CODE_NAME}_library gtest)
-
 ######################################################################################
 # Google Benchmark Framework
 ######################################################################################
@@ -76,6 +73,10 @@ set(BENCHMARK_ENABLE_GTEST_TESTS OFF CACHE BOOL "Disable Google Test in benchmar
 
 add_subdirectory(src/ext/google/benchmark)
 include_directories(src/ext/google/benchmark/src ${CMAKE_SOURCE_DIR}/src/ext/google/benchmark)
+
+add_executable(${PROJECT_CODE_NAME}_tests ${TEST_SOURCE})
+target_link_libraries(${PROJECT_CODE_NAME}_tests
+                      ${PROJECT_CODE_NAME}_library gtest benchmark::benchmark)
 
 ######################################################################################
 # Adding CMAKE Test

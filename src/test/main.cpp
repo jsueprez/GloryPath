@@ -1,7 +1,22 @@
 #include "gtest/gtest.h"
+#include "benchmark/benchmark.h"
 
 int main(int argc, char **argv)
 {
     ::testing::InitGoogleTest(&argc, argv);
-    return RUN_ALL_TESTS();
+
+    constexpr const int tests_run_okay{ 0 };
+    constexpr const int tests_run_with_error{ 1 };
+
+    if(RUN_ALL_TESTS() == tests_run_okay)
+    {
+        ::benchmark::Initialize(&argc, argv);
+        if (::benchmark::ReportUnrecognizedArguments(argc, argv))
+        {
+            return tests_run_with_error;
+        }
+        ::benchmark::RunSpecifiedBenchmarks();
+    }else{
+        return tests_run_with_error;
+    }
 }
