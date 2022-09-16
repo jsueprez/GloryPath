@@ -15,22 +15,22 @@ set(CMAKE_CXX_EXTENSIONS ON)
 # Definition of the source/headers files
 ######################################################################################
 set(CORE_SOURCE
-  src/module/computing.cpp
-  src/module/hashtable.cpp
-  src/module/chapterone.cpp
-  )
+    src/module/computing.cpp
+    src/module/hashtable.cpp
+    src/module/chapterone.cpp
+)
 
 set(CORE_HEADERS
-  src/module/computing.h
-  src/module/hashtable.h
-  src/module/chapterone.h
-  )
+    src/module/computing.h
+    src/module/hashtable.h
+    src/module/chapterone.h
+)
 
 file(GLOB TEST_SOURCE
     src/test/testComputing.cpp
     src/test/testChapterOne.cpp
     src/test/main.cpp
-    )
+)
 
 set(ALL_SRC_CODE ${CORE_SOURCE} ${CORE_HEADERS})
 
@@ -57,13 +57,25 @@ set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
 
 add_subdirectory(src/ext/google/googletest)
 include_directories (
-  src/ext/google/googletest/googletest/src
-  ${CMAKE_SOURCE_DIR}/src/ext/google/googletest/googletest/src
+    src/ext/google/googletest/googletest/src
+    ${CMAKE_SOURCE_DIR}/src/ext/google/googletest/googletest/src
 )
 
 add_executable(${PROJECT_CODE_NAME}_tests ${TEST_SOURCE})
 target_link_libraries(${PROJECT_CODE_NAME}_tests
-                      ${PROJECT_CODE_NAME}_library gtest)
+    ${PROJECT_CODE_NAME}_library gtest)
+
+######################################################################################
+# Google Benchmark Framework
+######################################################################################
+set(BENCHMARK_ENABLE_TESTING OFF CACHE BOOL "Disable benchmark testing" FORCE)
+set(BENCHMARK_ENABLE_EXCEPTIONS OFF CACHE BOOL "Disable benchmark exceptions" FORCE)
+set(BENCHMARK_ENABLE_INSTALL OFF CACHE BOOL "Don't install benchmark" FORCE)
+set(BENCHMARK_DOWNLOAD_DEPENDENCIES OFF CACHE BOOL "Don't download dependencies" FORCE)
+set(BENCHMARK_ENABLE_GTEST_TESTS OFF CACHE BOOL "Disable Google Test in benchmark" FORCE)
+
+add_subdirectory(src/ext/google/benchmark)
+include_directories(src/ext/google/benchmark/src ${CMAKE_SOURCE_DIR}/src/ext/google/benchmark)
 
 ######################################################################################
 # Adding CMAKE Test
