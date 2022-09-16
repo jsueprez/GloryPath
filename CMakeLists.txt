@@ -15,18 +15,20 @@ set(CMAKE_CXX_EXTENSIONS ON)
 # Definition of the source/headers files
 ######################################################################################
 set(CORE_SOURCE
-  src/module/widget.cpp
   src/module/computing.cpp
+  src/module/hashtable.cpp
+  src/module/chapterone.cpp
   )
 
 set(CORE_HEADERS
-  src/module/widget.h
   src/module/computing.h
+  src/module/hashtable.h
+  src/module/chapterone.h
   )
 
 file(GLOB TEST_SOURCE
-    src/test/test1.cpp
     src/test/testComputing.cpp
+    src/test/testChapterOne.cpp
     src/test/main.cpp
     )
 
