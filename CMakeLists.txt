@@ -49,6 +49,7 @@ add_library(${PROJECT_CODE_NAME}_library STATIC ${ALL_SRC_CODE})
 add_executable(${PROJECT_CODE_NAME}_executable src/main.cpp)
 target_link_libraries(${PROJECT_CODE_NAME}_executable ${PROJECT_CODE_NAME}_library)
 
+##TODO: Update to ExternalProject_Add
 ######################################################################################
 # Google Test Framework
 ######################################################################################
